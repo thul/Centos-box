@@ -1,0 +1,13 @@
+- name: install php
+  yum:
+    name={{ item }}
+    state=latest
+  with_items:
+    - php56
+    - php56-php-fpm
+    - php56-php-cli
+    - php56-php-intl
+    - php56-php-mysqlnd
+    - php56-php-mbstring
+    - php56-php-pdo
+    - php56-php-pecl-xdebug

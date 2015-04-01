@@ -1,0 +1,17 @@
+---
+- name: Install EPEL
+  yum: name=epel-release state=present
+
+- name: Install Remi
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
+
+- name: copy remi.repo settings
+  template:
+    src=etc/yum.repos.d/remi.repo
+    dest=/etc/yum.repos.d/remi.repo
+
+- name: Install deltarpm
+  yum: name=deltarpm state=present
+
+- name: install latest updates
+  yum: name=* state=latest

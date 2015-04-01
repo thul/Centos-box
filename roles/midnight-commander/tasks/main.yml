@@ -1,0 +1,3 @@
+---
+- name: install midnight commander
+  yum: name=mc state=latest
