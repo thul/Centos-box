@@ -1,6 +1,6 @@
 ---
-- name: Install MariaDB
+- name: Install client
   yum: name=mariadb state=present
 
-- name: Install MariaDB server
+- name: Install server
   yum: name=mariadb-server state=present

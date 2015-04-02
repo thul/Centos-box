@@ -1,0 +1,6 @@
+---
+- name: Install iptables
+  yum: name=iptables state=present
+
+- name: Install iptablesv6
+  yum: name=iptables-ipv6 state=present

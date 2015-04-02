@@ -1,0 +1,21 @@
+---
+- name: Install postfix
+  yum: name=postfix state=present
+
+- name: Install dovecot
+  yum: name=dovecot state=present
+
+- name: Install cyrus-sasl
+  yum: name=cyrus-sasl state=present
+
+- name: Install cyrus-sasl-lib
+  yum: name=cyrus-sasl-lib state=present
+
+- name: Install cyrus-sasl-plain
+  yum: name=cyrus-sasl-plain state=present
+
+- name: Install spammassassin
+  yum: name=spamassassin state=present
+
+- name: Install perl-Razor-Agent
+  yum: name=perl-Razor-Agent state=present

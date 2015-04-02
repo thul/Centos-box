@@ -1,4 +1,4 @@
-- name: install php
+- name: install
   yum:
     name={{ item }}
     state=latest
@@ -11,3 +11,6 @@
     - php56-php-mbstring
     - php56-php-pdo
     - php56-php-pecl-xdebug
+
+- name: Link /bin/php56 to /bin/php
+  file: src=/bin/php56 dest=/bin/php mode=0755 state=link

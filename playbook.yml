@@ -2,7 +2,13 @@
 - hosts: all
   roles:
     - update-system
+    - gcc
+    - bind
     - midnight-commander
     - mariadb
     - php
     - composer
+    - fail2ban
+    - iptables
+    - mail-server
+    - webmin
