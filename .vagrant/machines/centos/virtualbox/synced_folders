@@ -1,1 +1,0 @@
-{"virtualbox":{"/vagrant":{"nfs":{"mount_options":["dmode=777","fmode=777"]},"guestpath":"/vagrant","hostpath":"C:/Centos-box","disabled":false}}}
