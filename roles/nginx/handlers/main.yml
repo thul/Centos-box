@@ -1,6 +1,6 @@
 ---
 - name: restart nginx
-  service: name=nginx state=restarted 
+  service: name=nginx state=restarted enabled=true
   when: nginx_installation_type in nginx_installation_types_using_service and nginx_daemon_mode == "on"
 
 - name: reload nginx

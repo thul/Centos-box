@@ -1,28 +1,13 @@
 ---
 - name: Install
   yum: name=fail2ban state=present
+  notify:
+    - restart fail2ban
 
 - name: Install Gamin
   yum: name=gamin state=present
 
-#- name: copy fail2ban settings
-#  template:
-#    src=etc/fail2ban/fail2ban.conf
-#    dest=/etc/fail2ban/fail2ban.conf
-#
-#- name: copy jail settings
-#  template:
-#    src=etc/fail2ban/jail.conf
-#    dest=/etc/fail2ban/jail.conf
-#
-#- name: copy postfix-sasl filter
-#  template:
-#    src=etc/fail2ban/filter.d/postfix-sasl.conf
-#    dest=/etc/fail2ban/filter.d/postfix-sasl.conf
-
-#- name: stop fail2ban
-#  shell: fail2ban-client stop
-#  ignore_errors: yes
-#
-#- name: start fail2ban
-#  shell: fail2ban-client start
+- name: copy fail2ban settings
+  template:
+    src=etc/fail2ban/jail.d/fail2ban.conf
+    dest=/etc/fail2ban/jail.d/fail2ban.conf
