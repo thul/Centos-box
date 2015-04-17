@@ -6,7 +6,8 @@
     - bind
     - midnight-commander
     - mariadb
-    - php
+    - php-fpm
+    - nginx
     - composer
     - fail2ban
     - iptables

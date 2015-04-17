@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         v.memory = 4096
     end
 
-    config.vm.synced_folder ".", "/vagrant", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
+    config.vm.synced_folder ".", "/vagrant", :nfs => { :mount_options => ["dmode=700","fmode=600"] }
 
     config.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -33,7 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.vm.provision "ansible" do |ansible|
             ansible.playbook = "playbook.yml"
             ansible.inventory_path = "hosts"
-            ansible.limit = "development"
+            ansible.limit = "vm"
         end
     end
 end

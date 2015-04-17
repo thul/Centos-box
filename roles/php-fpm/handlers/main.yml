@@ -1,0 +1,8 @@
+---
+- name: restart php-fpm
+  sudo: true
+  service: name={{php_fpm_binary_name}} state=restarted
+
+- name: reload php-fpm
+  sudo: true
+  service: name={{php_fpm_binary_name}} state=reloaded

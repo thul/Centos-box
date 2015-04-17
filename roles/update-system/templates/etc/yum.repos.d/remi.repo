@@ -5,6 +5,7 @@ mirrorlist=http://rpms.famillecollet.com/enterprise/7/remi/mirror
 enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+includepkgs=php56*
 
 [remi-php55]
 name=Les RPM de remi de PHP 5.5 pour Enterprise Linux 7 - $basearch

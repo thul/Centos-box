@@ -18,6 +18,6 @@ chmod 666 /home/vagrant/hosts
 echo === running ansible ===
 export PYTHONUNBUFFERED=1
 
-ansible-playbook /vagrant/playbook.yml -i /home/vagrant/hosts --connection=local --limit 'vm'
+ansible-playbook /vagrant/playbook.yml -i /home/vagrant/hosts --connection=local --limit 'vm' -v
 
 echo === All done! ===

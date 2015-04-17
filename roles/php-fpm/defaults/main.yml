@@ -1,0 +1,53 @@
+---
+php_fpm_pools:
+ - name: dev-pool
+   user: www-data
+   group: www-data
+   listen: localhost:8000
+   pm: dynamic
+   pm.max_children: 5
+   pm.start_servers: 1
+   pm.min_spare_servers: 1
+   pm.max_spare_servers: 5
+   pm.max_requests: 200
+   chdir: /
+
+php_fpm_yum_packages:
+  - php
+  - php-fpm
+  - php-cli
+  - php-intl
+  - php-mcrypt
+  - php-mysqlnd
+  - php-xcache
+  - php-pecl-xdebug
+  - php-xhprof
+
+php_fpm_default_pool:
+  delete: yes
+  name: www.conf
+
+php_fpm_ini:
+ - option: "engine"
+   section: "PHP"
+   value: "1"
+ - option: "error_reporting"
+   section: "PHP"
+   value: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+ - option: "ldap.max_links"
+   section: "ldap"
+   value: "1"
+
+php_fpm_config:
+ - option: "error_log"
+   section: "global"
+   value: "/var/log/php5-fpm.log"
+
+php_fpm_ini_path: /etc/php.ini
+php_fpm_config_path: /etc/php-fpm.conf
+php_fpm_pool_d: /etc/php-fpm.d/
+
+php_fpm_binary_name: php-fpm
+php_fpm_service_name: php-fpm
+
+php_fpm_pid_file: /var/run/php-fpm/php-fpm.pid

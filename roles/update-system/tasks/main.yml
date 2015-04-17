@@ -13,8 +13,8 @@
 - name: Install deltarpm
   yum: name=deltarpm state=present
 
-- name: install latest updates
-  yum: name=* state=latest
+#- name: install latest updates
+#  yum: name=* state=latest
 
 - name: copy webmin.repo settings
   template:

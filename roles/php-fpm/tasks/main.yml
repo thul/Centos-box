@@ -1,0 +1,65 @@
+---
+- name: Install the php packages
+  sudo: true
+  yum: name={{ item }} state=present enablerepo=remi,remi-php56
+  with_items: php_fpm_yum_packages
+  environment: env
+  tags: [packages,php,fpm]
+
+- name: Copy the PHP configuration file
+  sudo: true
+  ini_file: dest={{ php_fpm_ini_path }} section="{{ item.section }}" option="{{ item.option }}" value="{{ item.value }}" backup=yes
+  with_items: php_fpm_ini
+  notify: 
+   - restart php-fpm
+  tags: [configuration,php,fpm]
+
+- name: Copy default FPM configuration file
+  sudo: true
+  template: dest={{ php_fpm_config_path }} src=php-fpm.conf.j2
+  tags: [configuration,php,fpm]
+
+- name: Copy the FPM configuration file
+  sudo: true
+  ini_file: dest={{ php_fpm_config_path }} section="{{ item.section }}" option="{{ item.option }}" value="{{ item.value }}" backup=yes
+  with_items: php_fpm_config
+  notify: 
+   - restart php-fpm
+  tags: [configuration,php,fpm]
+
+- name: Delete the default POOL configuration file
+  sudo: true
+  file: path={{ php_fpm_pool_d }}/{{ php_fpm_default_pool.name }} state=absent
+  when: php_fpm_default_pool.delete
+  tags: [configuration,php,fpm]
+
+- name: Copy the POOL configurations
+  sudo: true
+  template: src=pool.conf.j2 dest={{ php_fpm_pool_d }}/{{ item['name'] }}.conf backup=yes
+  with_items: php_fpm_pools
+  when: php_fpm_pools|lower != 'none'
+  notify: 
+   - restart php-fpm
+  tags: [configuration,php,fpm]
+
+- name: Check php-fpm syntax of configuration files
+  sudo: true
+  shell: "{{ php_fpm_binary_name }} -t"
+  register: result
+  changed_when: "result.rc != 0"
+  tags: [configuration,php,fpm]
+
+- name: Prepare extensions
+  sudo: true
+  file:
+    path="/etc/php5/extensions"
+    state=directory
+
+- name: Configure xdebug
+  sudo: true
+  template:
+    dest=/etc/php.d/15-xdebug.ini
+    src=etc/php.d/15-xdebug.ini
+
+- name: Add www-data user
+  user: name=www-data createhome=no system=yes
