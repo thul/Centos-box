@@ -1,2 +1,10 @@
+- name: copy webmin.repo settings
+  template:
+    src=etc/yum.repos.d/webmin.repo
+    dest=/etc/yum.repos.d/webmin.repo
+
+- name: import webmin key
+  shell: wget http://www.webmin.com/jcameron-key.asc && rpm --import jcameron-key.asc && rm jcameron-key.asc
+
 - name: install
   yum: name=webmin state=latest

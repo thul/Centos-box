@@ -3,10 +3,12 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
+Vagrant.require_version ">= 1.7.2"
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.ssh.forward_agent = true
-    config.vm.box = "chef/centos-7.0"
-    config.vm.hostname = "CentOS"
+    config.vm.box = "bento/centos-7.1"
+    config.vm.hostname = "CentOS-7"
 
     config.vm.provider "virtualbox" do |v|
         v.gui = true

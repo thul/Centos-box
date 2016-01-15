@@ -19,9 +19,8 @@ php_fpm_yum_packages:
   - php-intl
   - php-mcrypt
   - php-mysqlnd
-  - php-xcache
+  - php-memcached
   - php-pecl-xdebug
-  - php-xhprof
 
 php_fpm_default_pool:
   delete: yes

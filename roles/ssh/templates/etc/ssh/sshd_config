@@ -79,4 +79,4 @@ PubkeyAuthentication yes
 RSAAuthentication yes
 PermitRootLogin no
 PermitEmptyPasswords no
-AllowUsers vagrant
+#AllowUsers vagrant

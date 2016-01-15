@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  sudo: true
   roles:
     - update-system
     - gcc
@@ -9,7 +10,7 @@
     - php-fpm
     - nginx
     - composer
-    - fail2ban
     - iptables
+    - fail2ban
     - mail-server
     - webmin

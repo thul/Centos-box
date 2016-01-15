@@ -1,9 +1,8 @@
 ---
 - name: Install the php packages
   sudo: true
-  yum: name={{ item }} state=present enablerepo=remi,remi-php56
+  yum: name={{ item }} state=present
   with_items: php_fpm_yum_packages
-  environment: env
   tags: [packages,php,fpm]
 
 - name: Copy the PHP configuration file
