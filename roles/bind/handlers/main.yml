@@ -1,0 +1,7 @@
+---
+- name: enable bind
+  service: name=bind state=started enabled=yes
+
+- name: restart bind
+  service: name=bind state=restarted
+

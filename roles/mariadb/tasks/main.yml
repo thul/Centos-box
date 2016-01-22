@@ -4,3 +4,6 @@
 
 - name: Install server
   yum: name=mariadb-server state=present
+  notify:
+    - enable mariadb
+    - restart mariadb

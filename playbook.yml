@@ -1,9 +1,9 @@
 ---
 - hosts: all
-  sudo: true
+  become: true
   roles:
     - update-system
-    - gcc
+#    - gcc
     - bind
     - midnight-commander
     - mariadb

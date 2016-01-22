@@ -1,9 +1,15 @@
 ---
 - name: Install postfix
   yum: name=postfix state=present
+  notify:
+    - enable postfix
+    - restart postfix
 
 - name: Install dovecot
   yum: name=dovecot state=present
+  notify:
+    - enable dovecot
+    - restart dovecot
 
 - name: Install cyrus-sasl
   yum: name=cyrus-sasl state=present
@@ -19,3 +25,12 @@
 
 - name: Install perl-Razor-Agent
   yum: name=perl-Razor-Agent state=present
+
+- name: Install pypolicyd-spf
+  yum: name=pypolicyd-spf state=present
+
+- name: copy main.cf
+  copy: src=etc/postfix/main.cf dest=/etc/postfix/main.cf
+
+- name: copy master.cf
+  copy: src=etc/postfix/master.cf dest=/etc/postfix/master.cf

@@ -1,6 +1,9 @@
 ---
 - name: Install iptables
   yum: name=iptables state=present
+  notify:
+    - enable iptables
+    - restart iptables
 
 - name: Install iptablesv6
   yum: name=iptables-ipv6 state=present

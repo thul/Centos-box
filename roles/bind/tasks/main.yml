@@ -1,3 +1,9 @@
 ---
-- name: Install
+- name: Install bind
   yum: name=bind state=present
+  notify:
+    - enable bind
+    - restart bind
+
+- name: install bind-utils
+  yum: name=bind-utils state=present

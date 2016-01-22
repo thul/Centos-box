@@ -2,6 +2,7 @@
 - name: Install
   yum: name=fail2ban state=present
   notify:
+    - enable fail2ban
     - restart fail2ban
 
 - name: Install Gamin

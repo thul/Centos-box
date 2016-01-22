@@ -1,0 +1,7 @@
+---
+- name: enable iptables
+  service: name=postfix state=started enabled=yes
+
+- name: restart iptables
+  service: name=postfix state=restarted enabled=yes
+
